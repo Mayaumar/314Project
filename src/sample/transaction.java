@@ -23,7 +23,7 @@ public class transaction {
     }
 
     //parameterized constructor
-    transaction(long id, types theType, String description, String date, long studID, double amount)
+    transaction(long id, types theType , String description, String date, long studID, double amount)
     {
         this.ID = id;
         this.types = theType;
