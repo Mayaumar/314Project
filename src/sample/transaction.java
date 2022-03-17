@@ -3,9 +3,9 @@ package sample;
 public class transaction {
 
     //initializers
-    enum type {Income, Expense};
+    enum Type {Income, Expense};
     private long ID;
-    private type types;
+    private Type types;
     private String description;
     private String date;
     private long studentID;
@@ -15,7 +15,7 @@ public class transaction {
     transaction()
     {
         ID = 0;
-        types = type.Income;
+        types = Type.Income;
         description = "";
         date = "";
         studentID = 0;
@@ -23,7 +23,7 @@ public class transaction {
     }
 
     //parameterized constructor
-    transaction(long id, types theType , String description, String date, long studID, double amount)
+    transaction(long id, Type theType , String description, String date, long studID, double amount)
     {
         this.ID = id;
         this.types = theType;
@@ -35,7 +35,7 @@ public class transaction {
 
     //getters
     public long getId() { return this.ID; }
-    public types getType() { return this.types; }
+    public Type getType() { return this.types; }
     public String getDescription() { return this.description; }
     public String getDate() { return this.date; }
     public long getStudentID() { return this.studentID; }
@@ -43,7 +43,7 @@ public class transaction {
 
     //setters
     public void setId(long id) { this.ID = id; }
-    public void setType(types tp) { this.types = tp; }
+    public void setType(Type tp) { this.types = tp; }
     public void setDescription(String desc) { this.description = desc; }
     public void setDate(String date) { this.date = date; }
     public void setStudentID(long studID) { this.studentID = studID; }
@@ -56,7 +56,7 @@ public class transaction {
         String transaction = "ID:" + ID + "\nType: " + types +
                 "\nDescription: " + description + "\nDate:" + date + "\nStudent ID:" +
                 studentID + "\nAmount: " + amount;
-        return student;
+        return transaction;
     }
 
 
