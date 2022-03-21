@@ -1,6 +1,6 @@
 package sample;
 
-public class student {
+public class Student {
 
     //initializers
     private long ID;
@@ -12,7 +12,7 @@ public class student {
     private String email;
 
     //default constructor
-    student()
+    Student()
     {
         ID = 0;
         fullname = "";
@@ -24,7 +24,7 @@ public class student {
     }
 
     //parameterized constructor
-    student(long id, String fullname, int age, String guardian, String dob, String contact, String email)
+    Student(long id, String fullname, int age, String guardian, String dob, String contact, String email)
     {
         this.ID = id;
         this.fullname = fullname;
@@ -61,6 +61,8 @@ public class student {
         contact + "\nEmail: " + email;
         return student;
     }
+
+
 
 
 

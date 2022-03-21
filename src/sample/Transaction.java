@@ -1,6 +1,6 @@
 package sample;
 
-public class transaction {
+public class Transaction {
 
     //initializers
     enum Type {Income, Expense};
@@ -12,7 +12,7 @@ public class transaction {
     private double amount;
 
     //default constructor
-    transaction()
+    Transaction()
     {
         ID = 0;
         types = Type.Income;
@@ -23,7 +23,7 @@ public class transaction {
     }
 
     //parameterized constructor
-    transaction(long id, Type theType , String description, String date, long studID, double amount)
+    Transaction(long id, Type theType , String description, String date, long studID, double amount)
     {
         this.ID = id;
         this.types = theType;
