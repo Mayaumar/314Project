@@ -57,8 +57,8 @@ public class Student {
     public String toString()
     {
         String student = "Fullname: " + fullName + "\nAge: " + age +
-        "\nGuardian: " + guardian + "\nDate of Birth: " + dob + "\nContact: " +
-        contact + "\nEmail: " + email;
+                "\nGuardian: " + guardian + "\nDate of Birth: " + dob + "\nContact: " +
+                contact + "\nEmail: " + email;
         return student;
     }
 }

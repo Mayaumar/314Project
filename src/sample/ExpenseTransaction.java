@@ -27,6 +27,4 @@ public class ExpenseTransaction extends Transaction {
                 ", category=" + category +
                 "\n}";
     }
-
-
 }
