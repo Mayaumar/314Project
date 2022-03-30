@@ -1,11 +1,68 @@
 package sample;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main  {
 
     private static ArrayList<Student> students = new ArrayList<>();
+    private static ArrayList<ExpenseTransaction> ExpenseTrans = new ArrayList<>();
+    private static ArrayList<IncomeTransaction> IncomeTrans = new ArrayList<>();
+
+    static public void generateCashFlow(String startingDate, String endingDate) {
+        double totalIncomeAmount = 0.0;
+        double totalExpensesAmount = 0.0;
+
+        try {
+            Date startingDateObj = new SimpleDateFormat("dd/MM/yyyy").parse(startingDate);
+            Date endingDateObj = new SimpleDateFormat("dd/MM/yyyy").parse(endingDate);
+
+            for (int i = 0; i < IncomeTrans.size(); ++i) {
+                Date transactionDateObj = new SimpleDateFormat("dd/MM/yyyy").parse(IncomeTrans.get(i).getDate());
+                if (transactionDateObj.compareTo(startingDateObj) >= 0 && transactionDateObj.compareTo(endingDateObj) <= 0) {
+                    totalIncomeAmount += IncomeTrans.get(i).getAmount();
+                }
+            }
+
+            for (int i = 0; i < ExpenseTrans.size(); ++i) {
+                Date transactionDateObj = new SimpleDateFormat("dd/MM/yyyy").parse(ExpenseTrans.get(i).getDate());
+                if (transactionDateObj.compareTo(startingDateObj) >= 0 && transactionDateObj.compareTo(endingDateObj) <= 0) {
+                    totalExpensesAmount += ExpenseTrans.get(i).getAmount();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Total income: " + totalIncomeAmount);
+        System.out.println("Total expenses: " + totalExpensesAmount);
+    }
+
+
+    public static void addNewIncome(){
+        Scanner sc =  new Scanner(System.in);
+        System.out.println("Enter transaction ID");
+        long id = sc.nextLong();
+        sc.nextLine();
+        System.out.println("Enter description");
+        String description = sc.nextLine();
+        System.out.println("Enter transaction date");
+        String date = sc.nextLine();
+        System.out.println("Enter amount");
+        double amount = sc.nextDouble();
+        System.out.println("Enter student ID");
+        long studentID = sc.nextLong();
+
+        IncomeTransaction newIncome = new IncomeTransaction(id, description, date, amount, studentID);
+        IncomeTrans.add(newIncome);
+        for(int i = 0; i < IncomeTrans.size(); i++){
+            System.out.println(IncomeTrans.get(i));
+        }
+
+    }
+
 
     public static Student addNewStudent(){
         Scanner sc =  new Scanner(System.in);
@@ -30,6 +87,42 @@ public class Main  {
         students.add(newStudent);
         return newStudent;
     }
+    public static void addNewExpense(){
+        Scanner sc =  new Scanner(System.in);
+        System.out.println("Enter transaction ID");
+        long id = sc.nextLong();
+        sc.nextLine();
+        System.out.println("Enter description");
+        String description = sc.nextLine();
+        System.out.println("Enter transaction date");
+        String date = sc.nextLine();
+        System.out.println("Enter amount");
+        double amount = sc.nextDouble();
+        System.out.println("Enter expense category: 1)Rent \n2)Utilities \n3)Salary");
+        int expenseCategory = sc.nextInt();
+
+        if(expenseCategory == 1)
+        {
+            ExpenseTransaction newExpense = new ExpenseTransaction(id, description, date, amount, ExpenseTransaction.ExpenseCategory.Rent);
+            ExpenseTrans.add(newExpense);
+
+        }else if(expenseCategory == 2)
+        {
+            ExpenseTransaction newExpense = new ExpenseTransaction(id, description, date, amount, ExpenseTransaction.ExpenseCategory.Utilities);
+            ExpenseTrans.add(newExpense);
+
+        }else
+        {
+            ExpenseTransaction newExpense = new ExpenseTransaction(id, description, date, amount, ExpenseTransaction.ExpenseCategory.Salary);
+            ExpenseTrans.add(newExpense);
+
+        }
+
+
+        for(int i = 0; i < ExpenseTrans.size(); i++) {
+            System.out.println(ExpenseTrans.get(i));
+        }
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -48,6 +141,23 @@ public class Main  {
             addNewStudent();
             System.out.println("New Student Added Successfully");
         }
+        else if(userinput == 2){
+            addNewExpense();
+        }
+        else if(userinput == 3){
+            addNewIncome();
+        }
+        else if (userinput == 4){
+            String str1;
+            String str2;
 
-    }
+            System.out.print("Enter starting date:\t");
+            str1 = sc.nextLine();
+            System.out.print("Enter ending date:\t");
+            str2 = sc.nextLine();
+            generateCashFlow(str1,str2);
+        }
+
+
+            }
 }
